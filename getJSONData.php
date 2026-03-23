@@ -2,8 +2,8 @@
 // getJSONData.php
 
 // Your secret values — only visible on the server
-$BIN_ID = '698c059bae596e708f219058';
-$API_KEY = '$2a$10$xduHNHE/fbOkktYgXeDGy.VnQfrgpTB4e29GT/XoB/MZyzHGWYJga';
+$BIN_ID = '69867455d0ea881f40a671c3';
+$API_KEY = '$2a$10$CU4Q9gHz0jVdNEB4KLzoS.rtWPjDgU8WJMcexyvlHviXT9pJTuu2O';
 
 // JSONBin URL (latest version of the bin)
 $url = "https://api.jsonbin.io/v3/b/$BIN_ID/latest";
