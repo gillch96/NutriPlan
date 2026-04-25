@@ -1,5 +1,6 @@
 <?php
 // getJSONData.php
+//This script reads your saved data from the database
 
 // Your secret values — only visible on the server
 $BIN_ID = '69867455d0ea881f40a671c3';

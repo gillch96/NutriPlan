@@ -1,5 +1,6 @@
 <?php
 // saveContacts.php
+//This script updates the database with changes to your saved data, such as saving a new recipe
 
 $BIN_ID  = '69867455d0ea881f40a671c3';
 $API_KEY = '$2a$10$CU4Q9gHz0jVdNEB4KLzoS.rtWPjDgU8WJMcexyvlHviXT9pJTuu2O';

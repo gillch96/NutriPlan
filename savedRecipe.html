@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<!-- this is the page for a single recipe -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Saved Recipe</title>
+<title>Nutriplan - View Recipe</title>
 <style>
 body {
     margin: 0;
@@ -130,9 +131,51 @@ async function displaySavedRecipe() {
 
 //Placeholder for delete functionality
 document.getElementById("deleteButton").addEventListener("click", () => {
-    const recipeTitle = document.getElementById("recipeTitle").textContent;
+    //const recipeTitle = document.getElementById("recipeTitle").textContent;
 
-    if (!recipeTitle) return;
+   // if (!recipeTitle) return;
+//above is the old placeholder code
+
+//First the save recipe function from results.html is repeated in order to get a list of recipes
+try {
+    await loadSavedRecipes();
+    if (!Array.isArray(allRecipes)) allRecipes = [];
+
+    const recipe = {
+      recipePhoto: `<img src="${modalImage.src}">`,
+      recipeID: modalTitle.textContent,
+      ingredients: [...modalIngredients.children].map(li => li.textContent).join("\n"),
+      instructions: modalText.innerHTML,
+      star: parseInt(starRating.value)
+    };
+
+    allRecipes.push(recipe);
+
+     //But before pushing the list of recipes to the database, splice is used to remove the recipe we are trying to delete.  Current Index is used since it is also what was used to get to load this recipe in the first place.
+    allRecipes.splice(currentIndex,1);
+
+//Then it's saved just like in the results.html script'
+    const payload = { recipes: allRecipes };
+
+    const res = await fetch("putJSONData.php", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await res.json();
+    console.log(result); 
+	
+    if (!res.ok) throw new Error(result.message || "Failed to delete recipe");
+
+    alert("Recipe Deleted!");
+    closeModal();
+  } catch (err) {
+    console.error(err);
+    alert("Error deleteing recipe: " + err.message);
+  }
+//Finally bringing the user back to the page where all of the saved recipes are after they delete the recipe
+    window.history.back();
 
 });
 

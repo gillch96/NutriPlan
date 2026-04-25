@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 0; /* This script is the main style sheet that the rest of the GUI bases it's styles on */
     font-family: 'Roboto', sans-serif;
   
     background: linear-gradient(
